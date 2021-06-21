@@ -1,0 +1,8 @@
+<span
+  *ngFor="let bite of biteTimes"
+  [ngClass]="{ customstyle: compareTime(bite) }"
+  style="font-size: 25px; color: #fff"
+>
+  <span *ngIf="compareTime(bite)"> &#9759; </span>
+  <span *ngIf="!compareTime(bite)"> &#9757; </span>
+</span>
