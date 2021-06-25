@@ -1,8 +1,34 @@
-<span
-  *ngFor="let bite of biteTimes"
-  [ngClass]="{ customstyle: compareTime(bite) }"
-  style="font-size: 25px; color: #fff"
->
-  <span *ngIf="compareTime(bite)"> &#9759; </span>
-  <span *ngIf="!compareTime(bite)"> &#9757; </span>
-</span>
+<app-icon-count
+  [tickType]="tickTypes.Food"
+  [totalBites]="6"
+  [everyMinutes]="60"
+  [startHour]="12"
+></app-icon-count>
+<hr />
+<app-icon-count
+  [tickType]="tickTypes.Workout"
+  [totalBites]="6"
+  [everyMinutes]="120"
+  [startHour]="8"
+></app-icon-count>
+<hr />
+<app-icon-count
+  [tickType]="tickTypes.Dog"
+  [totalBites]="3"
+  [everyMinutes]="360"
+  [startHour]="8"
+></app-icon-count>
+<hr />
+<app-icon-count
+  [tickType]="tickTypes.Water"
+  [totalBites]="4"
+  [everyMinutes]="180"
+  [startHour]="8"
+></app-icon-count>
+<hr />
+<app-icon-count
+  [tickType]="tickTypes.Work"
+  [totalBites]="3"
+  [everyMinutes]="160"
+  [startHour]="10"
+></app-icon-count>

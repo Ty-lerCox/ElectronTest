@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import * as moment from "moment";
+import { faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { TickType } from "../tickTypes";
 
 @Component({
   selector: "app-home",
@@ -8,38 +10,9 @@ import * as moment from "moment";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  today = {};
-  startDate = {};
-  totalBites = 6;
-  biteTimes = [];
+  tickTypes = TickType;
 
-  constructor(private router: Router) {
-    this.refresh();
-    let intervalId = setInterval(() => {
-      this.biteTimes = [];
-      this.refresh();
-      console.log("refreshed occured");
-    }, 60000);
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
-
-  refresh(): void {
-    var today = moment().format("YYYY-MM-DD");
-    const hours = 12;
-    const minutes = 0;
-    this.today = moment(new Date()).local().format();
-    this.startDate = moment(today)
-      .set("hour", hours)
-      .set("minute", minutes)
-      .local()
-      .format();
-    for (var i = 0; i < this.totalBites; i++) {
-      this.biteTimes.push(moment(this.startDate).add("minute", i * 60));
-    }
-  }
-
-  compareTime(bite: string): boolean {
-    return moment(bite).isAfter(moment(this.today));
-  }
 }

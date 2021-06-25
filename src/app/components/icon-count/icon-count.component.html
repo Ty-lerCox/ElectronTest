@@ -1,0 +1,12 @@
+<span
+  *ngFor="let bite of biteTimes"
+  [ngClass]="{ customstyle: compareTime(bite) }"
+  style="font-size: 25px; padding-left: 5px;"
+>
+  <span *ngIf="compareTime(bite)">
+    <fa-icon [icon]="faIcon" style="color: #5e5e5e"></fa-icon>
+  </span>
+  <span *ngIf="!compareTime(bite)">
+    <fa-icon [icon]="faIcon" style="color: #ffff00"></fa-icon>
+  </span>
+</span>
