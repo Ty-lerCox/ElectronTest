@@ -4,4 +4,6 @@ export enum TickType {
   Dog,
   Water,
   Work,
+  Clean,
+  Socials,
 }

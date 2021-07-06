@@ -7,6 +7,8 @@ import {
   faDog,
   faWater,
   faBriefcase,
+  faEraser,
+  faCity,
 } from "@fortawesome/free-solid-svg-icons";
 import { TickType } from "../../tickTypes";
 
@@ -73,6 +75,12 @@ export class IconCountComponent implements OnInit {
         break;
       case TickType.Work:
         this.faIcon = faBriefcase;
+        break;
+      case TickType.Clean:
+        this.faIcon = faEraser;
+        break;
+      case TickType.Socials:
+        this.faIcon = faCity;
         break;
     }
   }
