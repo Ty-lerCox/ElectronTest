@@ -1,12 +1,19 @@
-<span
-  *ngFor="let bite of biteTimes"
-  [ngClass]="{ customstyle: compareTime(bite) }"
-  style="font-size: 25px; padding-left: 5px;"
->
-  <span *ngIf="compareTime(bite)">
-    <fa-icon [icon]="faIcon" style="color: #5e5e5e"></fa-icon>
-  </span>
-  <span *ngIf="!compareTime(bite)">
-    <fa-icon [icon]="faIcon" style="color: #ffff00"></fa-icon>
-  </span>
-</span>
+<div class="row" (click)="resetCount()">
+  <div class="col-6" style="padding-left: 30px">
+    <span
+      *ngFor="let bite of biteTimes"
+      [ngClass]="{ customstyle: compareTime(bite) }"
+      style="font-size: 25px; padding-left: 5px"
+    >
+      <span *ngIf="compareTime(bite)">
+        <fa-icon [icon]="faIcon" style="color: #5e5e5e"></fa-icon>
+      </span>
+      <span *ngIf="!compareTime(bite)">
+        <fa-icon [icon]="faIcon" style="color: #ffff00"></fa-icon>
+      </span>
+    </span>
+  </div>
+  <div class="col-6">
+    <mat-progress-bar mode="determinate" [value]="getCount()"></mat-progress-bar>
+  </div>
+</div>

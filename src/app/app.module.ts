@@ -5,6 +5,8 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { CoreModule } from "./core/core.module";
 import { SharedModule } from "./shared/shared.module";
 
+import { OrderModule } from 'ngx-order-pipe';
+
 import { AppRoutingModule } from "./app-routing.module";
 
 // NG Translate
@@ -16,7 +18,11 @@ import { DetailModule } from "./detail/detail.module";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { IconCountComponent } from "./components/icon-count/icon-count.component";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatButtonModule } from "@angular/material/button";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -33,6 +39,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SharedModule,
     DetailModule,
     AppRoutingModule,
+    MatProgressBarModule,
+    MatButtonModule,
+    OrderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -41,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       },
     }),
     FontAwesomeModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

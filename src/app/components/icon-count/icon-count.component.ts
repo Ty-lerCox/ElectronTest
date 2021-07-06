@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
 import * as moment from "moment";
 import {
@@ -11,6 +11,7 @@ import {
   faCity,
 } from "@fortawesome/free-solid-svg-icons";
 import { TickType } from "../../tickTypes";
+import { IconCountService } from "./icon-count.service";
 
 @Component({
   selector: "app-icon-count",
@@ -22,21 +23,27 @@ export class IconCountComponent implements OnInit {
   startDate = {};
   biteTimes = [];
   faIcon = faDumbbell;
+  count: number = 100;
 
   @Input() tickType: TickType = TickType.Food;
   @Input() totalBites: number = 1;
   @Input() everyMinutes: number = 60;
   @Input() startHour: number = 12;
 
-  constructor(private router: Router) {
+  constructor(private iconCountService: IconCountService) {
     let intervalId = setInterval(() => {
       this.getIcon();
+      if (this.count > 1) {
+        this.count = this.count - 1;
+        this.iconCountService.updateCount(this.tickType, this.count);
+      }
       this.biteTimes = [];
       this.refresh();
     }, 60000);
   }
 
   ngOnInit(): void {
+    this.count = this.everyMinutes;
     this.getIcon();
     this.biteTimes = [];
     this.refresh();
@@ -87,5 +94,20 @@ export class IconCountComponent implements OnInit {
 
   compareTime(bite: string): boolean {
     return moment(bite).isAfter(moment(this.today));
+  }
+
+  getCount(): number {
+    const perc = (100 * this.count) / this.everyMinutes;
+    if (perc > 50) {
+      return 100;
+    } else if (perc > 25) {
+      return 50;
+    } else {
+      return perc;
+    }
+  }
+
+  resetCount() {
+    this.count = this.everyMinutes;
   }
 }
