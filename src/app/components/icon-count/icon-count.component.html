@@ -13,7 +13,10 @@
       </span>
     </span>
   </div>
-  <div class="col-6">
-    <mat-progress-bar mode="determinate" [value]="getCount()"></mat-progress-bar>
+  <div class="col-6" *ngIf="51 > getPerc()">
+    <mat-progress-bar
+      mode="determinate"
+      [value]="getCount()"
+    ></mat-progress-bar>
   </div>
 </div>

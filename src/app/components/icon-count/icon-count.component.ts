@@ -32,11 +32,14 @@ export class IconCountComponent implements OnInit {
 
   constructor(private iconCountService: IconCountService) {
     let intervalId = setInterval(() => {
-      this.getIcon();
-      if (this.count > 1) {
-        this.count = this.count - 1;
-        this.iconCountService.updateCount(this.tickType, this.count);
+      const currentHour = moment(new Date()).local().hour();
+      if (currentHour >= this.startHour) {
+        if (this.count > 1) {
+          this.count = this.count - 1;
+          this.iconCountService.updateCount(this.tickType, this.count);
+        }
       }
+      this.getIcon();
       this.biteTimes = [];
       this.refresh();
     }, 60000);
@@ -107,7 +110,15 @@ export class IconCountComponent implements OnInit {
     }
   }
 
+  getPerc(): number {
+    const perc = (100 * this.count) / this.everyMinutes;
+    return perc;
+  }
+
   resetCount() {
     this.count = this.everyMinutes;
+    this.getIcon();
+    this.biteTimes = [];
+    this.refresh();
   }
 }
